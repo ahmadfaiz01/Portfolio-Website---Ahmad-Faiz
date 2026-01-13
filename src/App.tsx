@@ -6,6 +6,7 @@ import Projects from './pages/Projects'
 import Designs from './pages/Designs'
 import Certifications from './pages/Certifications'
 import Connect from './pages/Connect'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/designs" element={<Designs />} />
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/connect" element={<Connect />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>

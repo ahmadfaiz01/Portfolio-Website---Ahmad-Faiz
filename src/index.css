@@ -14,11 +14,32 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   background: #F4EDE1;
   color: #1B1B1F;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EDE1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #800000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #600000;
 }
 
 #root {

@@ -19,7 +19,7 @@ const projectCards: Project[] = [
     stack: ['Python', 'Streamlit', 'Scikit-Learn', 'SHAP'],
     liveLink: 'https://autoclasspredictor.streamlit.app/',
     githubLink: 'https://github.com/ahmadfaiz01/AutoClasp-AutoClassPredictor',
-    thumbnails: ['/acp1.png','/acp2.png'],
+    thumbnails: ['/acp1.png', '/acp2.png'],
   },
   {
     title: 'Hamsafar',
@@ -44,16 +44,14 @@ const projectCards: Project[] = [
 ]
 
 // Reusable Slideshow Component for Projects
-const SlideshowProjectImage = ({ images, title }: { images: string[], title: string }) => {
+const SlideshowProjectImage = ({ images, title, priority = false }: { images: string[], title: string, priority?: boolean }) => {
   const [index, setIndex] = useState(0)
-  
-  // FIXED: Removed the unused 'prefersReducedMotion' variable
 
   useEffect(() => {
     if (images.length <= 1) return
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length)
-    }, 3000) 
+    }, 3000)
     return () => clearInterval(interval)
   }, [images.length])
 
@@ -61,7 +59,7 @@ const SlideshowProjectImage = ({ images, title }: { images: string[], title: str
     <div className="absolute inset-0 w-full h-full bg-gray-50 flex items-center justify-center overflow-hidden">
       {/* Fallback Icon */}
       <div className="absolute inset-0 flex items-center justify-center text-[#800000]/10 z-0">
-         <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
       </div>
 
       <AnimatePresence mode="popLayout">
@@ -73,6 +71,9 @@ const SlideshowProjectImage = ({ images, title }: { images: string[], title: str
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={priority ? "high" : "auto"}
           className="absolute inset-0 w-full h-full object-contain z-10 transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             const target = e.target as HTMLImageElement
@@ -87,14 +88,13 @@ const SlideshowProjectImage = ({ images, title }: { images: string[], title: str
           {images.map((_, i) => (
             <div
               key={i}
-              className={`h-1.5 rounded-full shadow-sm transition-all duration-300 ${
-                i === index ? 'w-4 bg-[#800000]' : 'w-1.5 bg-gray-300'
-              }`}
+              className={`h-1.5 rounded-full shadow-sm transition-all duration-300 ${i === index ? 'w-4 bg-[#800000]' : 'w-1.5 bg-gray-300'
+                }`}
             />
           ))}
         </div>
       )}
-      
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-10" />
     </div>
   )
@@ -131,19 +131,23 @@ export default function Projects() {
               className="rounded-2xl border-2 border-[#800000]/30 bg-white shadow-[0_3px_0_#800000] hover:shadow-[0_10px_0_#800000] hover:border-[#800000] transition-all duration-300 relative overflow-hidden group cursor-pointer flex flex-col h-full"
             >
               <div className="aspect-video w-full bg-gray-50 border-b-2 border-[#800000]/10 relative overflow-hidden">
-                <SlideshowProjectImage images={proj.thumbnails} title={proj.title} />
+                <SlideshowProjectImage
+                  images={proj.thumbnails}
+                  title={proj.title}
+                  priority={idx < 2}
+                />
               </div>
 
               <div className="flex-1 p-6 flex flex-col">
                 <div className="mb-4">
-                    <h3 className="text-xl font-display font-bold text-charcoal mb-2 group-hover:text-[#800000] transition-colors">
+                  <h3 className="text-xl font-display font-bold text-charcoal mb-2 group-hover:text-[#800000] transition-colors">
                     {proj.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-charcoal/70 font-body line-clamp-3">
+                  </h3>
+                  <p className="text-sm leading-relaxed text-charcoal/70 font-body line-clamp-3">
                     {proj.blurb}
-                    </p>
+                  </p>
                 </div>
-              
+
                 <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                   {proj.stack.map((tag) => (
                     <span
