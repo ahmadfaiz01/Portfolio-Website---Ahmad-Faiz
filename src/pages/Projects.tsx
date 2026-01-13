@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 // Define the Project type to support multiple images
 type Project = {
@@ -9,7 +9,7 @@ type Project = {
   liveLink?: string
   githubLink?: string
   videoLink?: string
-  thumbnails: string[] // Changed from single 'thumbnail' to array
+  thumbnails: string[]
 }
 
 const projectCards: Project[] = [
@@ -19,14 +19,14 @@ const projectCards: Project[] = [
     stack: ['Python', 'Streamlit', 'Scikit-Learn', 'SHAP'],
     liveLink: 'https://autoclasspredictor.streamlit.app/',
     githubLink: 'https://github.com/ahmadfaiz01/AutoClasp-AutoClassPredictor',
-    thumbnails: ['/acp1.png','/acp2.png'], // Add more screenshots here if available
+    thumbnails: ['/acp1.png','/acp2.png'],
   },
   {
     title: 'Hamsafar',
     blurb: 'AI-powered travel companion app enhancing travel experiences through intelligent recommendations.',
     stack: ['AI/ML', 'Mobile Dev', 'UI/UX'],
     videoLink: '#',
-    thumbnails: ['/hamsafar-thumb.png'], // Add more app screens here
+    thumbnails: ['/hamsafar-thumb.png'],
   },
   {
     title: 'Hybrid CPU Scheduler',
@@ -39,20 +39,21 @@ const projectCards: Project[] = [
     title: 'Ilm App - eLearning Platform',
     blurb: 'Comprehensive Android-based eLearning application featuring online notes, interactive quizzes, video lectures, and real-time live classes.',
     stack: ['Android Studio', 'Java', 'Firebase', 'Real-time DB'],
-    thumbnails: ['/ilm-app-1.png', '/ilm-app-2.png'], // Add your app screenshots here
+    thumbnails: ['/ilm-app-1.png', '/ilm-app-2.png'],
   },
 ]
 
 // Reusable Slideshow Component for Projects
 const SlideshowProjectImage = ({ images, title }: { images: string[], title: string }) => {
   const [index, setIndex] = useState(0)
-  const prefersReducedMotion = useReducedMotion()
+  
+  // FIXED: Removed the unused 'prefersReducedMotion' variable
 
   useEffect(() => {
     if (images.length <= 1) return
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length)
-    }, 3000) // 3 second transition
+    }, 3000) 
     return () => clearInterval(interval)
   }, [images.length])
 
@@ -72,7 +73,6 @@ const SlideshowProjectImage = ({ images, title }: { images: string[], title: str
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          // object-contain ensures the WHOLE image fits without cropping
           className="absolute inset-0 w-full h-full object-contain z-10 transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             const target = e.target as HTMLImageElement
@@ -95,7 +95,6 @@ const SlideshowProjectImage = ({ images, title }: { images: string[], title: str
         </div>
       )}
       
-      {/* Dark Gradient Overlay for better text contrast if needed, mostly subtle here */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-10" />
     </div>
   )
@@ -121,7 +120,6 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Changed grid-cols-3 to grid-cols-2 for a 2x2 layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projectCards.map((proj, idx) => (
             <motion.div
@@ -132,12 +130,10 @@ export default function Projects() {
               whileHover={{ scale: 1.02, y: -8 }}
               className="rounded-2xl border-2 border-[#800000]/30 bg-white shadow-[0_3px_0_#800000] hover:shadow-[0_10px_0_#800000] hover:border-[#800000] transition-all duration-300 relative overflow-hidden group cursor-pointer flex flex-col h-full"
             >
-              {/* Thumbnail Area - Aspect Ratio Container */}
               <div className="aspect-video w-full bg-gray-50 border-b-2 border-[#800000]/10 relative overflow-hidden">
                 <SlideshowProjectImage images={proj.thumbnails} title={proj.title} />
               </div>
 
-              {/* Content */}
               <div className="flex-1 p-6 flex flex-col">
                 <div className="mb-4">
                     <h3 className="text-xl font-display font-bold text-charcoal mb-2 group-hover:text-[#800000] transition-colors">
