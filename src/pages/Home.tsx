@@ -28,7 +28,7 @@ export default function Home() {
           <motion.img
             src="/portrait.png"
             alt="Portrait of Ahmad Faiz"
-            className="relative z-10 w-[340px] sm:w-[400px] h-auto object-contain filter grayscale hover:grayscale-0 transition duration-200"
+            className="relative z-10 w-[280px] sm:w-[400px] h-auto object-contain filter grayscale hover:grayscale-0 transition duration-200"
             whileHover={prefersReducedMotion ? undefined : { scale: 1.01 }}
             transition={{ duration: 0.2 }}
           />
@@ -42,7 +42,7 @@ export default function Home() {
               <Link
                 key={label.text}
                 to={paths[label.section] || '/'}
-                className={`absolute ${label.size} font-display font-bold uppercase tracking-tight text-[#800000cc] hover:text-[#800000] transition cursor-pointer`}
+                className={`hidden md:block absolute ${label.size} font-display font-bold uppercase tracking-tight text-[#800000cc] hover:text-[#800000] transition cursor-pointer`}
                 style={{ left: label.x, top: label.y, transform: `rotate(${label.rotate}deg)` }}
               >
                 <motion.span
@@ -58,7 +58,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col items-center text-center space-y-8 mb-16">
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight max-w-4xl">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight max-w-4xl px-4">
             Ahmad Faiz is an ML Engineer &amp;<br />UI/UX Designer
           </h1>
           <p className="text-lg sm:text-xl text-charcoal/80 max-w-2xl leading-relaxed font-body">
