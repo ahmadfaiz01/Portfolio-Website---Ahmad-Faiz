@@ -51,8 +51,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className="fixed top-6 z-50 pointer-events-none"
         initial={{ left: '50%', x: '-50%' }}
         animate={{
-          left: showHamburger ? '24px' : '50%',
-          x: showHamburger ? 0 : '-50%',
+          left: isMobile ? 'auto' : (isScrolled ? '24px' : '50%'),
+          right: isMobile ? '24px' : 'auto',
+          x: isMobile ? 0 : (isScrolled ? 0 : '-50%'),
         }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
