@@ -9,6 +9,7 @@ type Project = {
   liveLink?: string
   githubLink?: string
   videoLink?: string
+  paperLink?: string
   thumbnails: string[]
 }
 
@@ -33,7 +34,8 @@ const projectCards: Project[] = [
     blurb: 'Interactive simulation of lock-aware CPU scheduling. Features process configuration and real-time visualization.',
     stack: ['OS', 'React', 'Vercel'],
     liveLink: 'https://v0-hybrid-cpu-scheduler-simulator-2.vercel.app/',
-    thumbnails: ['/cpu-scheduler-thumb.png'],
+    paperLink: '/research-paper.pdf',
+    thumbnails: ['/cpu-1.jpg', '/cpu-2.jpg', '/cpu-3.jpg'],
   },
   {
     title: 'Ilm App - eLearning Platform',
@@ -165,10 +167,15 @@ export default function Projects() {
                       href={proj.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-bold text-charcoal hover:text-[#800000] flex items-center gap-1.5 transition-colors"
+                      className="px-3 py-1.5 rounded-full bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800 text-xs font-bold transition-all flex items-center gap-2 group/link border border-green-200"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Live
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      Live Demo
+                      <svg className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                     </a>
                   )}
                   {proj.githubLink && (
@@ -191,6 +198,17 @@ export default function Projects() {
                       onClick={(e) => e.stopPropagation()}
                     >
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg> Video
+                    </a>
+                  )}
+                  {proj.paperLink && (
+                    <a
+                      href={proj.paperLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-bold text-charcoal hover:text-[#800000] flex items-center gap-1.5 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> Paper
                     </a>
                   )}
                 </div>

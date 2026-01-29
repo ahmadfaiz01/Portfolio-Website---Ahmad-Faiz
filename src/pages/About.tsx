@@ -6,7 +6,7 @@ const education = [
     fullName: 'School of Electrical Engineering & Computer Science',
     degree: 'BS Computer Science',
     period: '2023 - 2027',
-    year: '4th Sem',
+    year: '6th Sem',
     logo: '/nust-logo.png',
     location: 'Islamabad',
   },
@@ -16,19 +16,22 @@ const experience = [
   {
     organization: 'bluediamond.ai',
     role: 'AI Intern',
-    period: 'Aug 2025 - Present',
-    location: 'Austria (Remote)',
-    description: 'Working on AI agents, agentic RAG, Rust programming, automation, and Moodle integration.',
-    skills: ['AI Agents', 'RAG', 'Rust', 'Automation'],
+    period: 'Jun 2025 - Aug 2025',
+    location: 'Salzburg, Austria (Remote)',
+    description: 'Working on AI Agents, Agentic Rag and +3 skills',
+    skills: ['AI Agents', 'Agentic RAG', 'Rust', 'Automation'],
     logo: '/aiesec-logo.png',
+    link: 'https://bluediamond.ai',
   },
   {
     organization: 'AIESEC',
-    role: 'Member',
-    period: '2023 - Present',
-    description: 'Contributing to global youth leadership and cross-cultural exchange programs.',
-    skills: ['Leadership', 'Management'],
+    role: 'EP Management (Outgoing Exchange)',
+    period: 'Oct 2023 - Feb 2025',
+    location: 'Islāmābād, Pakistan',
+    description: 'International Relations, Pitch Development and +3 skills',
+    skills: ['International Relations', 'Pitch Development', 'Management'],
     logo: '/aiesec-logo.png',
+    link: 'https://aiesec.org',
   },
 ]
 
@@ -43,6 +46,9 @@ const skills = {
   design: [
     { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
     { name: 'Photoshop', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-plain.svg' },
+  ],
+  testing: [
+    { name: 'Maze', icon: 'https://www.datocms-assets.com/38511/1762798858-maze-icon.svg' },
   ],
 }
 
@@ -80,8 +86,7 @@ export default function About() {
               Ahmad Faiz
             </h1>
             <p className="text-xl leading-relaxed font-body text-charcoal/80 max-w-2xl">
-              I'm a 4th-semester CS undergrad at NUST. I split time between ML engineering (RAG/LLMs) and crafting interfaces
-              for AI workflows.
+              Building AI-driven software that handles the heavy lifting so humans don’t have to. I’ve been in the design game for 6 years having worked with clients like Pakistan Cricket Board, but lately, I’m focused on that sweet spot where UI/UX and tech merge to solve problems from both ends.
             </p>
           </div>
           <div className="flex-shrink-0 relative">
@@ -96,10 +101,10 @@ export default function About() {
 
         {/* Masonry-style Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
+
           {/* LEFT COL */}
           <div className="flex flex-col gap-6">
-            
+
             {/* Education */}
             <motion.div
               whileHover={{ scale: 1.02, y: -4 }}
@@ -114,8 +119,8 @@ export default function About() {
                   <h3 className="text-lg font-display font-bold text-charcoal">{education[0].institution}</h3>
                   <p className="text-sm text-charcoal/70 font-body mb-1">{education[0].fullName}</p>
                   <div className="flex flex-wrap gap-2 mt-2">
-                     <span className="text-xs font-bold bg-[#800000]/10 text-[#800000] px-2 py-1 rounded">{education[0].degree}</span>
-                     <span className="text-xs font-bold bg-gray-100 text-charcoal/60 px-2 py-1 rounded">{education[0].year}</span>
+                    <span className="text-xs font-bold bg-[#800000]/10 text-[#800000] px-2 py-1 rounded">{education[0].degree}</span>
+                    <span className="text-xs font-bold bg-gray-100 text-charcoal/60 px-2 py-1 rounded">{education[0].year}</span>
                   </div>
                 </div>
               </div>
@@ -129,26 +134,37 @@ export default function About() {
               <div className="text-sm uppercase tracking-wide text-[#800000] mb-6 font-display font-bold">Skills</div>
               <div className="space-y-6">
                 <div>
-                    <div className="text-xs font-bold text-charcoal/40 mb-3 uppercase">Technical</div>
-                    <div className="flex flex-wrap gap-2">
-                        {skills.technical.map((skill, idx) => (
-                        <div key={idx} className="flex items-center gap-2 rounded-lg border border-[#800000]/20 px-3 py-1.5 hover:bg-[#800000]/5 transition-colors">
-                            <img src={skill.icon} className="w-4 h-4" alt="" />
-                            <span className="text-xs font-bold text-charcoal">{skill.name}</span>
-                        </div>
-                        ))}
-                    </div>
+                  <div className="text-xs font-bold text-charcoal/40 mb-3 uppercase">Technical</div>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.technical.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-2 rounded-lg border border-[#800000]/20 px-3 py-1.5 hover:bg-[#800000]/5 transition-colors">
+                        <img src={skill.icon} className="w-4 h-4" alt="" />
+                        <span className="text-xs font-bold text-charcoal">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div>
-                    <div className="text-xs font-bold text-charcoal/40 mb-3 uppercase">Design</div>
-                    <div className="flex flex-wrap gap-2">
-                        {skills.design.map((skill, idx) => (
-                        <div key={idx} className="flex items-center gap-2 rounded-lg border border-[#800000]/20 px-3 py-1.5 hover:bg-[#800000]/5 transition-colors">
-                            <img src={skill.icon} className="w-4 h-4" alt="" />
-                            <span className="text-xs font-bold text-charcoal">{skill.name}</span>
-                        </div>
-                        ))}
-                    </div>
+                  <div className="text-xs font-bold text-charcoal/40 mb-3 uppercase">Design</div>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.design.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-2 rounded-lg border border-[#800000]/20 px-3 py-1.5 hover:bg-[#800000]/5 transition-colors">
+                        <img src={skill.icon} className="w-4 h-4" alt="" />
+                        <span className="text-xs font-bold text-charcoal">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-charcoal/40 mb-3 uppercase">Testing</div>
+                  <div className="flex flex-wrap gap-2">
+                    {skills.testing.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-2 rounded-lg border border-[#800000]/20 px-3 py-1.5 hover:bg-[#800000]/5 transition-colors">
+                        <img src={skill.icon} className="w-4 h-4" alt="" />
+                        <span className="text-xs font-bold text-charcoal">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -156,7 +172,7 @@ export default function About() {
 
           {/* RIGHT COL */}
           <div className="flex flex-col gap-6">
-            
+
             {/* Experience (Updated to White Card style) */}
             <motion.div
               whileHover={{ scale: 1.02, y: -4 }}
@@ -168,7 +184,19 @@ export default function About() {
                   <div key={idx} className="relative pl-6 border-l-2 border-[#800000]/10 last:border-0">
                     <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#800000] border-2 border-white shadow-sm" />
                     <div className="mb-2">
-                      <h3 className="text-lg font-display font-bold text-charcoal">{exp.organization}</h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-display font-bold text-charcoal">
+                          {/* @ts-ignore - link is added dynamically */}
+                          {exp.link ? (
+                            <a href={exp.link} target="_blank" rel="noopener noreferrer" className="hover:text-[#800000] transition-colors flex items-center gap-1">
+                              {exp.organization}
+                              <svg className="w-3 h-3 text-[#800000]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            </a>
+                          ) : (
+                            exp.organization
+                          )}
+                        </h3>
+                      </div>
                       <div className="flex justify-between items-center text-xs font-bold text-[#800000]/80 mt-1">
                         <span>{exp.role}</span>
                         <span>{exp.period}</span>
@@ -178,7 +206,7 @@ export default function About() {
                     <div className="flex flex-wrap gap-2">
                       {exp.skills?.map((s, i) => (
                         <span key={i} className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-charcoal/60 px-2 py-1 rounded">
-                            {s}
+                          {s}
                         </span>
                       ))}
                     </div>
