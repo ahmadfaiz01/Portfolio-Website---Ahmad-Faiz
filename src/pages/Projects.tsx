@@ -20,14 +20,14 @@ const projectCards: Project[] = [
     stack: ['Python', 'Streamlit', 'Scikit-Learn', 'SHAP'],
     liveLink: 'https://autoclasspredictor.streamlit.app/',
     githubLink: 'https://github.com/ahmadfaiz01/AutoClasp-AutoClassPredictor',
-    thumbnails: ['/acp1.png', '/acp2.png'],
+    thumbnails: ['/optimized/acp1.webp', '/optimized/acp2.webp'],
   },
   {
     title: 'Hamsafar',
     blurb: 'AI-powered travel companion app enhancing travel experiences through intelligent recommendations.',
     stack: ['AI/ML', 'Mobile Dev', 'UI/UX'],
     videoLink: '#',
-    thumbnails: ['/hamsafar-thumb.png'],
+    thumbnails: ['/optimized/hamsafar-thumb.webp'],
   },
   {
     title: 'Hybrid CPU Scheduler',
@@ -35,13 +35,13 @@ const projectCards: Project[] = [
     stack: ['OS', 'React', 'Vercel'],
     liveLink: 'https://v0-hybrid-cpu-scheduler-simulator-2.vercel.app/',
     paperLink: '/research-paper.pdf',
-    thumbnails: ['/cpu-1.jpg', '/cpu-2.jpg', '/cpu-3.jpg'],
+    thumbnails: ['/optimized/cpu-1.webp', '/optimized/cpu-2.webp', '/optimized/cpu-3.webp'],
   },
   {
     title: 'Ilm App - eLearning Platform',
     blurb: 'Comprehensive Android-based eLearning application featuring online notes, interactive quizzes, video lectures, and real-time live classes.',
     stack: ['Android Studio', 'Java', 'Firebase', 'Real-time DB'],
-    thumbnails: ['/ilm-app-1.png', '/ilm-app-2.png'],
+    thumbnails: ['/optimized/ilm-app-1.webp', '/optimized/ilm-app-2.webp'],
   },
 ]
 
