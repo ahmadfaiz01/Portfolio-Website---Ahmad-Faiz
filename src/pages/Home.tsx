@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 
 const backgroundLabels = [
   { text: 'ML', section: 'projects', x: '30%', y: '88%', rotate: -2, size: 'text-5xl' },
@@ -21,10 +20,9 @@ const stats = [
 
 export default function Home() {
   const prefersReducedMotion = useReducedMotion()
-  const [showCVOptions, setShowCVOptions] = useState(false)
 
   return (
-    <div className="min-h-screen bg-base text-charcoal font-body" onClick={() => setShowCVOptions(false)}>
+    <div className="min-h-screen bg-base text-charcoal font-body">
       <div className="max-w-5xl mx-auto px-6 py-10 relative z-10 pt-24">
         <div className="relative flex justify-center mb-8 overflow-visible">
           <motion.img
@@ -73,28 +71,15 @@ export default function Home() {
             >
               Get in touch
             </Link>
-            <div className="relative">
-              <button
-                className="rounded-full border border-charcoal/20 bg-white px-6 py-3 font-semibold text-charcoal transition hover:-translate-y-0.5 hover:shadow-lg font-body flex items-center gap-2"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setShowCVOptions(!showCVOptions)
-                }}
-              >
-                Download CV
-                <svg className={`w-4 h-4 transition-transform ${showCVOptions ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-              </button>
-              {showCVOptions && (
-                <div className="absolute top-full mt-2 left-0 w-full bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-20 flex flex-col">
-                  <a href="/CV.pdf" target="_blank" className="px-4 py-3 text-sm text-left hover:bg-gray-50 text-charcoal font-bold flex items-center gap-2" onClick={() => setShowCVOptions(false)}>
-                    <span>Technical CV</span>
-                  </a>
-                  <a href="/CV.pdf" target="_blank" className="px-4 py-3 text-sm text-left hover:bg-gray-50 text-charcoal font-bold flex items-center gap-2 border-t border-gray-100" onClick={() => setShowCVOptions(false)}>
-                    <span>Design CV</span>
-                  </a>
-                </div>
-              )}
-            </div>
+            <a
+              href="/AhmadFaiz_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-charcoal/20 bg-white px-6 py-3 font-semibold text-charcoal transition hover:-translate-y-0.5 hover:shadow-lg font-body flex items-center gap-2"
+            >
+              Download CV
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            </a>
           </div>
         </div>
 

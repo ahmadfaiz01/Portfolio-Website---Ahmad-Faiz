@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const certs = [
   {
-    name: 'Gold Badge, HackerRank Python Programming / Problem-Solving',
+    name: 'Silver Badge, HackerRank Python Programming / Problem-Solving',
     org: 'HackerRank',
     link: 'https://www.hackerrank.com/profile/itsahmadfaiz',
     image: '/hackerrank-cert.png',
@@ -64,7 +64,7 @@ export default function Certifications() {
                     }}
                   />
                 </div>
-                
+
                 {/* Date Badge */}
                 <div className="absolute top-3 right-3 bg-[#800000] text-white text-xs font-display font-bold px-3 py-1.5 rounded-full shadow-sm">
                   {cert.date}
@@ -85,9 +85,9 @@ export default function Certifications() {
 
                 {/* Arrow Icon */}
                 <div className="absolute bottom-6 right-6 text-[#800000] group-hover:translate-x-1 transition-transform duration-300">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </div>
               </div>
             </motion.a>

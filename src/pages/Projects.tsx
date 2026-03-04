@@ -27,7 +27,7 @@ const projectCards: Project[] = [
     blurb: 'AI-powered travel companion app enhancing travel experiences through intelligent recommendations.',
     stack: ['AI/ML', 'Mobile Dev', 'UI/UX'],
     videoLink: '#',
-    thumbnails: ['/optimized/hamsafar-thumb.webp'],
+    thumbnails: ['/hamsafar.png'],
   },
   {
     title: 'Hybrid CPU Scheduler',
