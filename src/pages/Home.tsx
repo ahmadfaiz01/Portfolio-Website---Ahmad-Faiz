@@ -59,7 +59,7 @@ export default function Home() {
 
         <div className="flex flex-col items-center text-center space-y-8 mb-16">
           <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight max-w-4xl px-4">
-            Ahmad Faiz is an ML Engineer &amp;<br />UI/UX Designer
+            Ahmad Faiz is a Product Designer &<br />Developer
           </h1>
           <p className="text-lg sm:text-xl text-charcoal/80 max-w-2xl leading-relaxed font-body">
             Building AI-driven software that handles the heavy lifting so humans don’t have to.
@@ -103,7 +103,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 justify-center items-center">
               {[
                 { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-                { name: 'LangChain', icon: 'https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/langchain-color.png' },
+                { name: 'LangChain', icon: 'https://api.iconify.design/devicon:langchain.svg' },
                 { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
                 { name: 'Photoshop', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-plain.svg' },
                 { name: 'PyTorch', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg' },

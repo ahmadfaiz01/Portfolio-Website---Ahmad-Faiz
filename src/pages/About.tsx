@@ -14,6 +14,16 @@ const education = [
 
 const experience = [
   {
+    organization: 'Quickcomm.ae',
+    role: 'Product Designer',
+    period: 'Jan 2026 – Present',
+    location: 'Dubai, UAE (Remote)',
+    description: 'Leading brand identity, UI/UX, and all design at a Dubai-based e-commerce startup backed by Antler. Responsible for end-to-end product design, branding, and visual communications.',
+    skills: ['Branding', 'UI/UX', 'Product Design', 'Antler-backed'],
+    logo: '/aiesec-logo.png',
+    link: 'https://quickcomm.ae',
+  },
+  {
     organization: 'bluediamond.ai',
     role: 'AI Intern',
     period: 'Jun 2025 - Aug 2025',
