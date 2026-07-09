@@ -9,7 +9,9 @@ type DesignShot = {
   images: string[]
   figmaLink?: string
   photoshopLink?: string
+  nextjsLink?: string
   shadowStyle: 'maroon' | 'black' | 'blue' | 'green' | 'none'
+  aspectClass?: string
 }
 
 const designShots: DesignShot[] = [
@@ -30,6 +32,54 @@ const designShots: DesignShot[] = [
     images: ['/optimized/fitted.webp'],
     figmaLink: 'https://www.figma.com/community/file/1581758303209118075',
     shadowStyle: 'green',
+  },
+  {
+    id: 16,
+    title: 'Aegis AI + Hardware',
+    description: 'AI-enabled hardware solution for travel security and personal safety.',
+    category: 'UI/UX',
+    images: ['/optimized/aegis.webp'],
+    figmaLink: '#',
+    shadowStyle: 'black',
+  },
+  {
+    id: 20,
+    title: 'Ustad App',
+    description: 'AI-enabled educational and mentoring assistant application.',
+    category: 'UI/UX',
+    images: ['/optimized/ustad.webp'],
+    figmaLink: '#',
+    shadowStyle: 'maroon',
+  },
+  {
+    id: 17,
+    title: 'Hamsafar',
+    description: 'AI-powered travel companion web interface and onboarding platform.',
+    category: 'Web Design & Development',
+    images: ['/optimized/hamsafar.webp'],
+    nextjsLink: '#',
+    shadowStyle: 'green',
+    aspectClass: 'aspect-[16/10]',
+  },
+  {
+    id: 18,
+    title: 'Exolve',
+    description: 'Creative technology studio landing page and service platform.',
+    category: 'Web Design & Development',
+    images: ['/optimized/exolve.webp'],
+    nextjsLink: '#',
+    shadowStyle: 'black',
+    aspectClass: 'aspect-[16/10] md:aspect-[2/1]',
+  },
+  {
+    id: 19,
+    title: 'Padel District',
+    description: 'Booking dashboard and marketing website for premium sports club.',
+    category: 'Web Design & Development',
+    images: ['/optimized/padel.webp'],
+    nextjsLink: '#',
+    shadowStyle: 'blue',
+    aspectClass: 'aspect-[16/10]',
   },
   {
     id: 2,
@@ -97,7 +147,7 @@ const designShots: DesignShot[] = [
 ]
 
 // Slideshow Component
-const SlideshowImage = ({ images, title, priority = false }: { images: string[], title: string, priority?: boolean }) => {
+const SlideshowImage = ({ images, title, priority = false, aspectClass }: { images: string[], title: string, priority?: boolean, aspectClass?: string }) => {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -109,15 +159,17 @@ const SlideshowImage = ({ images, title, priority = false }: { images: string[],
   }, [images.length])
 
   return (
-    <div className="relative w-full h-auto overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 ease-out">
-      {/* Invisible image to reserve layout space properly */}
-      <img
-        src={images[0]}
-        alt="spacer"
-        className="invisible w-full h-auto"
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-      />
+    <div className={`relative w-full overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 ease-out ${aspectClass ? aspectClass : 'h-auto'}`}>
+      {/* Only render the spacer image if no aspectClass is specified to fallback to natural aspect ratio */}
+      {!aspectClass && (
+        <img
+          src={images[0]}
+          alt="spacer"
+          className="invisible w-full h-auto"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+        />
+      )}
 
       <AnimatePresence mode='popLayout'>
         <motion.img
@@ -176,12 +228,12 @@ const ProjectCard = ({ shot, priority = false }: { shot: DesignShot, priority?: 
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.a
-        href={shot.figmaLink || shot.photoshopLink || '#'}
+        href={shot.figmaLink || shot.photoshopLink || shot.nextjsLink || '#'}
         target="_blank"
         className={`relative flex flex-col h-full rounded-2xl bg-white overflow-hidden border-2 transition-all duration-500 will-change-transform ${getShadowClasses(shot.shadowStyle)}`}
         whileHover={prefersReducedMotion ? undefined : { y: -6 }}
       >
-        <SlideshowImage images={shot.images} title={shot.title} priority={priority} />
+        <SlideshowImage images={shot.images} title={shot.title} priority={priority} aspectClass={shot.aspectClass} />
 
         <div className="p-6 border-t border-gray-100 flex-1 flex flex-col justify-between bg-white relative z-20">
           <div className="flex justify-between items-start gap-4">
@@ -189,17 +241,18 @@ const ProjectCard = ({ shot, priority = false }: { shot: DesignShot, priority?: 
               <h3 className="text-lg font-display font-bold text-charcoal leading-tight mb-2">{shot.title}</h3>
               <p className="text-sm text-charcoal/60 leading-relaxed font-body">{shot.description}</p>
             </div>
-            {(shot.figmaLink || shot.photoshopLink) && (
-              <div className="shrink-0 bg-gray-50 p-2 rounded-xl border border-gray-100">
+            {(shot.figmaLink || shot.photoshopLink || shot.nextjsLink) && (
+              <div className="shrink-0 bg-gray-50 p-2 rounded-xl border border-gray-100 flex gap-2">
                 {shot.figmaLink && <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" className="w-5 h-5" alt="Figma" />}
                 {shot.photoshopLink && <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-plain.svg" className="w-5 h-5" alt="PS" />}
+                {shot.nextjsLink && <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" className="w-5 h-5 filter dark:invert" alt="Next.js" />}
               </div>
             )}
           </div>
         </div>
 
         <AnimatePresence>
-          {isHovered && (shot.figmaLink || shot.photoshopLink) && (
+          {isHovered && (shot.figmaLink || shot.photoshopLink || shot.nextjsLink) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -232,8 +285,12 @@ export default function Designs() {
     : designShots.filter(shot => shot.category === selectedCategory)
 
   // Split Data for Hybrid Layout
-  const featuredDesigns = visibleDesigns.filter(shot => shot.category === 'UI/UX')
-  const masonryDesigns = visibleDesigns.filter(shot => shot.category !== 'UI/UX')
+  const uiuxDesigns = visibleDesigns.filter(shot => shot.category === 'UI/UX')
+  const webDesigns = visibleDesigns.filter(shot => shot.category === 'Web Design & Development')
+  const graphicDesigns = visibleDesigns.filter(shot => shot.category === 'Graphic Design')
+
+  const exolveDesign = webDesigns.find(shot => shot.title === 'Exolve')
+  const otherWebDesigns = webDesigns.filter(shot => shot.title !== 'Exolve')
 
   return (
     <div className="min-h-screen bg-base text-charcoal font-body py-32 md:py-36">
@@ -273,8 +330,8 @@ export default function Designs() {
 
         <AnimatePresence mode="popLayout">
 
-          {/* SECTION 1: FEATURED (UI/UX) - BIG GRID */}
-          {featuredDesigns.length > 0 && (
+          {/* SECTION 1: UI/UX & Products - BIG GRID */}
+          {uiuxDesigns.length > 0 && (
             <motion.div layout className="mb-20">
               {selectedCategory === 'All' && (
                 <div className="flex items-center gap-4 mb-8">
@@ -284,15 +341,47 @@ export default function Designs() {
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {featuredDesigns.map((shot, idx) => (
+                {uiuxDesigns.map((shot, idx) => (
                   <ProjectCard key={shot.id} shot={shot} priority={idx < 2} />
                 ))}
               </div>
             </motion.div>
           )}
 
-          {/* SECTION 2: MASONRY (GRAPHIC DESIGN) - COMPACT COLUMNS */}
-          {masonryDesigns.length > 0 && (
+          {/* SECTION 2: WEB DESIGN & DEVELOPMENT - CUSTOM LAYOUT */}
+          {webDesigns.length > 0 && (
+            <motion.div layout className="mb-20">
+              {selectedCategory === 'All' && (
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="text-xl font-display font-bold text-charcoal uppercase tracking-wider">Web Design & Development</h2>
+                  <div className="h-px bg-[#800000]/10 flex-1" />
+                </div>
+              )}
+
+              <div className="flex flex-col items-center gap-8">
+                {/* Exolve Card on top (Larger Width) */}
+                {exolveDesign && (
+                  <div className="w-full max-w-[1200px]">
+                    <ProjectCard shot={exolveDesign} priority={true} />
+                  </div>
+                )}
+
+                {/* Other Web Design Cards side-by-side below */}
+                {otherWebDesigns.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-8 w-full max-w-[1200px]">
+                    {otherWebDesigns.map((shot, idx) => (
+                      <div key={shot.id} className="w-full md:w-[calc(50%-16px)] max-w-[584px]">
+                        <ProjectCard shot={shot} priority={idx < 2} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+
+          {/* SECTION 3: GRAPHIC DESIGN - COMPACT COLUMNS */}
+          {graphicDesigns.length > 0 && (
             <motion.div layout>
               {selectedCategory === 'All' && (
                 <div className="flex items-center gap-4 mb-8">
@@ -302,7 +391,7 @@ export default function Designs() {
               )}
 
               <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-                {masonryDesigns.map((shot) => (
+                {graphicDesigns.map((shot) => (
                   <div key={shot.id} className="break-inside-avoid mb-8">
                     <ProjectCard shot={shot} priority={false} />
                   </div>
